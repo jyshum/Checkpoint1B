@@ -16,7 +16,7 @@ boolean f; //true or false
 float starX;
 
 void setup() {
-sss
+  
   size(800,800); //size of the interface
   
 }
@@ -33,15 +33,15 @@ void draw() {
   circle(130,200,8);
   circle(200,300,3);
   circle(610,200,4);
-  circle(410,250,2);
+  circle(410,250,2s
   circle(300,100,7);
   circle(130,290,6);
   circle(100,250,2);
   
-  //starX = 2
-  //if (starX > width) {
-  //starX = -10;
-  //}
+  starX = 2
+  if (starX > width) {
+  starX = -10;
+  }
   
   stroke(5);
   fill(255);
