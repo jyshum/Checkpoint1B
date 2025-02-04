@@ -1,46 +1,66 @@
+Star[] myStars;
+int numstars;
+
 // color pallette
-color sky = #253355; 
+color sky = #A4DEE8; 
 color bush = #4E7951;
 color base = #8E8E8E;
 color roof = #58534B;
 color window = #C6C0B4;
 color door = #644F27;
 color staircase = #5A564D;
+color sun = #E1E37E;
+color sun1 = #E6E894;
 
 //global variables
 int x; // 1, 8, 103
+int y; 
 float w; // decimals: 1.1, 6.9
 boolean f; //true or false
 
 //aniamtion variables
-float starX;
+float sunY;
+float sunX;
+boolean day;
 
 void setup() {
   
   size(800,800); //size of the interface
+  noStroke();
+  numstars = 100;
+  myStars = new Star[numstars];
+  
+  int i = 0;
+  while (i < numstars) {
+    myStars[i] = new Star();
+    i = i + 1;
+  }
+  
+  sunY = 600;
+  sunX = 100;
   
 }
 
 void draw() {
-
+  
+  if (sunY < -100) {
+   sunY = 600;
+   sunX = 100;
+  }
+  
   background(sky); //background
+
+  sunY = sunY - 2;
+  sunX = sunX + 0.5;
+  pushMatrix();
+  sun(sunX, sunY);
+  popMatrix();
   
-  fill(255);
-  noStroke();
-  circle(100,100,5);
-  circle(300,200,6);
-  circle(600,300,4);
-  circle(130,200,8);
-  circle(200,300,3);
-  circle(610,200,4);
-  circle(410,250,2s
-  circle(300,100,7);
-  circle(130,290,6);
-  circle(100,250,2);
-  
-  starX = 2
-  if (starX > width) {
-  starX = -10;
+  int i = 0;
+  while (i < numstars) {
+    myStars[i].show();
+    myStars[i].act();
+    i = i + 1;
   }
   
   stroke(5);
@@ -73,4 +93,15 @@ void draw() {
   ellipse(600,580,100,50);
   ellipse(620,600,70,20);
 
+}
+
+void sun(float x, float y) {
+  
+  translate(x,y);
+  noStroke();
+  fill(sun1);
+  ellipse(0,0,70,70);
+  fill(sun);
+  ellipse(0,0,60,60);
+  
 }
