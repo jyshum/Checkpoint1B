@@ -3,6 +3,7 @@ int numstars;
 
 // color pallette
 color sky = #A4DEE8; 
+color nightColor = #222971;
 color bush = #4E7951;
 color base = #8E8E8E;
 color roof = #58534B;
@@ -11,6 +12,9 @@ color door = #644F27;
 color staircase = #5A564D;
 color sun = #E1E37E;
 color sun1 = #E6E894;
+color sun2 = #F4F5BE;
+color moon1 = #EDEDED;
+color moon2 = #C6C6C6;
 
 //global variables
 int x; // 1, 8, 103
@@ -21,7 +25,10 @@ boolean f; //true or false
 //aniamtion variables
 float sunY;
 float sunX;
+float moonX;
+float moonY;
 boolean day;
+boolean night;
 
 void setup() {
   
@@ -39,22 +46,59 @@ void setup() {
   sunY = 600;
   sunX = 100;
   
+  moonX = 100;
+  moonY = 600;
+  
+  day = true;
+  night = false;
+  
 }
 
 void draw() {
   
-  if (sunY < -100) {
-   sunY = 600;
-   sunX = 100;
-  }
+  if (day == true) {
   
-  background(sky); //background
-
+  background(sky);
   sunY = sunY - 2;
   sunX = sunX + 0.5;
   pushMatrix();
   sun(sunX, sunY);
   popMatrix();
+  night = false;
+    
+  }
+  
+  if (sunY < -100) {
+    
+   sunY = 600;
+   sunX = 100;
+   night = true;
+   day = false;
+   
+  }
+  
+  if (night == true) {
+  
+  background(nightColor);
+  moonY = moonY - 2;
+  moonX = moonX + 0.5;
+  pushMatrix();
+  moon(moonX, moonY);
+  popMatrix();
+  day = false;
+  
+  }
+  
+  if (moonY < -100) {
+    
+   moonY = 600;
+   moonX = 100;
+   night = false;
+   day = true;
+   
+  }
+
+
   
   int i = 0;
   while (i < numstars) {
@@ -99,9 +143,23 @@ void sun(float x, float y) {
   
   translate(x,y);
   noStroke();
+  fill(sun2);
+  ellipse(0,0,85,85);
   fill(sun1);
   ellipse(0,0,70,70);
   fill(sun);
+  ellipse(0,0,60,60);
+
+  
+}
+
+void moon(float x, float y) {
+  
+  translate(x,y);
+  noStroke();
+  fill(moon1);
+  ellipse(0,0,70,70);
+  fill(moon2);
   ellipse(0,0,60,60);
   
 }
